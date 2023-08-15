@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      (function (m, a, z, e) {
+        var s, t;
+        try {
+          t = m.sessionStorage.getItem('maze-us');
+        } catch (err) {}
+      
+        if (!t) {
+          t = new Date().getTime();
+          try {
+            m.sessionStorage.setItem('maze-us', t);
+          } catch (err) {}
+        }
+      
+        s = a.createElement('script');
+        s.src = z + '?t=' + t + '&apiKey=' + e;
+        s.async = true;
+        a.getElementsByTagName('head')[0].appendChild(s);
+        m.mazeUniversalSnippetApiKey = e;
+      })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '90d4419b-0de2-4cd6-a2a6-c970a8356739');
+      </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
@@ -41,7 +62,7 @@
     </nav>
 
     <div class="jumbotron">
-      <div class="container-fluid p-0">
+      <div class="container position-relative">
         <img src="image/bg-soccer.png" class="img-fluid" alt />
         <div class="position-absolute w-50" id="input-cari">
           <form id="form-search">
@@ -140,7 +161,7 @@
               appendHtml('card-ticket', `
                 <div class="col-xxl-4 col-lg-4 col-lg-4 col-md-6">
                   <a href="home_tiket.html?id=${item.id || 0}" class="nav-link">
-                    <div class="card">
+                    <div class="card mb-4">
                       <img class="img-fluid gambar-jadwal w-100"
                         src="${item.thumbnail || ''}"
                         alt>
